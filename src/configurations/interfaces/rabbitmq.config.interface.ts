@@ -3,6 +3,4 @@ export interface IRabbitmqConfig {
   BROKERS: string[];
   USERNAME: string;
   PASSWORD: string;
-  VHOST: string;
-  QUEUE_NAME: string;
 }

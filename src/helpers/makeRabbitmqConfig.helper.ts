@@ -8,9 +8,8 @@ export const makeRabbitmqConfig = (
   port: number;
   username: string;
   password: string;
-  vhost: string;
 }[] => {
-  const { PROTOCOL, BROKERS, USERNAME, PASSWORD, VHOST } = config;
+  const { PROTOCOL, BROKERS, USERNAME, PASSWORD } = config;
 
   return BROKERS.map((broker) => {
     const [hostname, port] = broker.split(':');
@@ -21,7 +20,6 @@ export const makeRabbitmqConfig = (
       port: Number(port),
       username: USERNAME,
       password: PASSWORD,
-      vhost: VHOST,
     };
   });
 };
