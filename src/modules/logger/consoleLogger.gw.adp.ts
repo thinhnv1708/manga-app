@@ -31,7 +31,11 @@ export class ConsoleLoggerGwAdp implements AbstractLoggerGwAdp {
     this.logger.log(message, context);
   }
 
-  debug(message: string, context: string, level: number): void {
+  debug(
+    message: string,
+    context: string,
+    level: number = DEBUG_LEVEL.BASIC,
+  ): void {
     if (!this.checkDebugMode(level)) {
       return;
     }

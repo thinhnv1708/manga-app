@@ -8,7 +8,7 @@ import { buildLogContext } from '@utils/buildLogContext.util';
 import { buildLogMessage } from '@utils/buildLogMessage.util';
 import { excutePromise } from '@utils/excutePromise.util';
 import { AbstractMangaSearchRepository, IMangaSearchData } from './abstracts';
-import { COMMONS } from '@constants/index';
+import { COMMONS, LOGGER } from '@constants/index';
 const CONTEXT_LOG = 'MangaSearchRepository';
 
 @Injectable()
@@ -78,8 +78,9 @@ export class MangaSearchRepository implements AbstractMangaSearchRepository {
     }
 
     this.loggerGwAdp.debug(
-      buildLogMessage('', JSON.stringify(query), JSON.stringify(result)),
+      buildLogMessage('', JSON.stringify(query)),
       buildLogContext(CONTEXT_LOG, 'searchMangas'),
+      LOGGER.DEBUG_LEVEL.DETAIL,
     );
 
     return result.hits.hits.map(

@@ -1,6 +1,6 @@
 import { IAppConfig } from '@configurations/interfaces';
 import { AbstractLoggerGwAdp } from '@modules/logger';
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Query, UseInterceptors } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { buildLogContext } from '@utils/buildLogContext.util';
 import { buildLogMessage } from '@utils/buildLogMessage.util';
@@ -8,8 +8,10 @@ import { searchMangasQueryJoiSchema } from './dtos/joiSchemas';
 import { ISearchMangasResult } from './dtos/searchMangasResult.interface';
 import { SearchService } from './search.service';
 import { ISearchMangasQuery } from './dtos';
+import { LoggingHttpReqResInterceptor } from 'src/interceptors';
 const CONTEXT_LOG = 'SearchRestControllerAdp';
 
+@UseInterceptors(LoggingHttpReqResInterceptor)
 @Controller('/api/v1/search')
 export class SearchRestControllerAdp {
   constructor(
